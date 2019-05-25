@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="title: “C++智能指针” output: “智能指针”C++智能指针auto_ptr：在指针离开作用域时，会自动的delete但是有如下问题：  当auto_ptr值传递给函数的时候，在这个函数结束的时候指针就释放掉了，导致在函数结束之后无法访问之前传递给该函数的指针了。 无法用于数组。因为默认析构函数调用的是delete，而数组需要用delete[]。 无法和容器共用。  shared">
+<meta name="description" content="C++智能指针auto_ptr：在指针离开作用域时，会自动的delete但是有如下问题：  当auto_ptr值传递给函数的时候，在这个函数结束的时候指针就释放掉了，导致在函数结束之后无法访问之前传递给该函数的指针了。 无法用于数组。因为默认析构函数调用的是delete，而数组需要用delete[]。 无法和容器共用。  shared_ptr 共享所有权(sharedownership)的概念。s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++智能指针">
 <meta property="og:url" content="http://RobotOuyang.github.io/2019/05/25/C-智能指针/index.html">
 <meta property="og:site_name" content="Better Coder&#39;s Blog">
-<meta property="og:description" content="title: “C++智能指针” output: “智能指针”C++智能指针auto_ptr：在指针离开作用域时，会自动的delete但是有如下问题：  当auto_ptr值传递给函数的时候，在这个函数结束的时候指针就释放掉了，导致在函数结束之后无法访问之前传递给该函数的指针了。 无法用于数组。因为默认析构函数调用的是delete，而数组需要用delete[]。 无法和容器共用。  shared">
+<meta property="og:description" content="C++智能指针auto_ptr：在指针离开作用域时，会自动的delete但是有如下问题：  当auto_ptr值传递给函数的时候，在这个函数结束的时候指针就释放掉了，导致在函数结束之后无法访问之前传递给该函数的指针了。 无法用于数组。因为默认析构函数调用的是delete，而数组需要用delete[]。 无法和容器共用。  shared_ptr 共享所有权(sharedownership)的概念。s">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-25T08:35:51.141Z">
+<meta property="og:updated_time" content="2019-05-25T09:18:44.492Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++智能指针">
-<meta name="twitter:description" content="title: “C++智能指针” output: “智能指针”C++智能指针auto_ptr：在指针离开作用域时，会自动的delete但是有如下问题：  当auto_ptr值传递给函数的时候，在这个函数结束的时候指针就释放掉了，导致在函数结束之后无法访问之前传递给该函数的指针了。 无法用于数组。因为默认析构函数调用的是delete，而数组需要用delete[]。 无法和容器共用。  shared">
+<meta name="twitter:description" content="C++智能指针auto_ptr：在指针离开作用域时，会自动的delete但是有如下问题：  当auto_ptr值传递给函数的时候，在这个函数结束的时候指针就释放掉了，导致在函数结束之后无法访问之前传递给该函数的指针了。 无法用于数组。因为默认析构函数调用的是delete，而数组需要用delete[]。 无法和容器共用。  shared_ptr 共享所有权(sharedownership)的概念。s">
 
 
 
@@ -299,9 +299,7 @@
       
 
       
-        <hr>
-<p>title: “C++智能指针”</p>
-<h2 id="output-“智能指针”"><a href="#output-“智能指针”" class="headerlink" title="output: “智能指针”"></a>output: “智能指针”</h2><h2 id="C-智能指针"><a href="#C-智能指针" class="headerlink" title="C++智能指针"></a>C++智能指针</h2><h3 id="auto-ptr："><a href="#auto-ptr：" class="headerlink" title="auto_ptr："></a><b>auto_ptr：</b></h3><p>在指针离开作用域时，会自动的delete<br>但是有如下问题：<br><br></p>
+        <h2 id="C-智能指针"><a href="#C-智能指针" class="headerlink" title="C++智能指针"></a>C++智能指针</h2><h3 id="auto-ptr："><a href="#auto-ptr：" class="headerlink" title="auto_ptr："></a><b>auto_ptr：</b></h3><p>在指针离开作用域时，会自动的delete<br>但是有如下问题：<br><br></p>
 <ol>
 <li>当auto_ptr值传递给函数的时候，在这个函数结束的时候指针就释放掉了，导致在函数结束之后无法访问之前传递给该函数的指针了。</li>
 <li>无法用于数组。因为默认析构函数调用的是delete，而数组需要用delete[]。</li>
@@ -472,7 +470,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#output-“智能指针”"><span class="nav-number">1.</span> <span class="nav-text">output: “智能指针”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-智能指针"><span class="nav-number">2.</span> <span class="nav-text">C++智能指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#auto-ptr："><span class="nav-number">2.1.</span> <span class="nav-text">auto_ptr：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shared-ptr"><span class="nav-number">2.2.</span> <span class="nav-text">shared_ptr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-ptr"><span class="nav-number">2.3.</span> <span class="nav-text">weak_ptr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unique-ptr"><span class="nav-number">2.4.</span> <span class="nav-text">unique_ptr</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-智能指针"><span class="nav-number">1.</span> <span class="nav-text">C++智能指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#auto-ptr："><span class="nav-number">1.1.</span> <span class="nav-text">auto_ptr：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shared-ptr"><span class="nav-number">1.2.</span> <span class="nav-text">shared_ptr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-ptr"><span class="nav-number">1.3.</span> <span class="nav-text">weak_ptr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unique-ptr"><span class="nav-number">1.4.</span> <span class="nav-text">unique_ptr</span></a></li></ol></li></ol></div>
             
 
           </div>

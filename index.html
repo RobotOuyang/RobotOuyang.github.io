@@ -303,9 +303,7 @@
       
         
           
-            <hr>
-<p>title: “C++智能指针”</p>
-<h2 id="output-“智能指针”"><a href="#output-“智能指针”" class="headerlink" title="output: “智能指针”"></a>output: “智能指针”</h2><h2 id="C-智能指针"><a href="#C-智能指针" class="headerlink" title="C++智能指针"></a>C++智能指针</h2><h3 id="auto-ptr："><a href="#auto-ptr：" class="headerlink" title="auto_ptr："></a><b>auto_ptr：</b></h3><p>在指针离开作用域时，会自动的delete<br>但是有如下问题：<br><br></p>
+            <h2 id="C-智能指针"><a href="#C-智能指针" class="headerlink" title="C++智能指针"></a>C++智能指针</h2><h3 id="auto-ptr："><a href="#auto-ptr：" class="headerlink" title="auto_ptr："></a><b>auto_ptr：</b></h3><p>在指针离开作用域时，会自动的delete<br>但是有如下问题：<br><br></p>
 <ol>
 <li>当auto_ptr值传递给函数的时候，在这个函数结束的时候指针就释放掉了，导致在函数结束之后无法访问之前传递给该函数的指针了。</li>
 <li>无法用于数组。因为默认析构函数调用的是delete，而数组需要用delete[]。</li>

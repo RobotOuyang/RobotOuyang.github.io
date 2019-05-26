@@ -466,6 +466,23 @@
 <li>tf.placeholder 占位符</li>
 <li>tf.Variable 变量</li>
 </ul>
+<h3 id="tensorflow变量"><a href="#tensorflow变量" class="headerlink" title="tensorflow变量"></a>tensorflow变量</h3><p>tf.Variable方法是操作，返回值是变量(特殊的张量)<br>tensor在TensorFlow的垃圾回收里会回收掉，而Variable不会被回收掉，一般tf.Variable用来维护状态，比如权重w和偏置b就是用Variable。<br>变量使用流程：<br><img src="/2019/05/25/tensorflow-basics/tensorflow_04.png" alt="变量使用流程"></p>
+<h3 id="Save的使用"><a href="#Save的使用" class="headerlink" title="Save的使用"></a>Save的使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#save</span></span><br><span class="line">saver = tf.train.Saver(&#123;<span class="string">'W'</span>: W, <span class="string">'b'</span>: b&#125;)</span><br><span class="line">saver.save(sess, <span class="string">'./summary/test.ckpt'</span>, global_step=<span class="number">0</span>)</span><br><span class="line"><span class="comment">#restore</span></span><br><span class="line">saver.restore(sess, <span class="string">'./summary/test.ckpt-0'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="tensorflow-Operation"><a href="#tensorflow-Operation" class="headerlink" title="tensorflow Operation"></a>tensorflow Operation</h3><p>数据流图由节点和有向边组成，每个节点均对应一个操作。操作是模型功能的实际载体。</p>
+<ul>
+<li>存储节点：有状态的变量操作，通常存储模型参数 tf.Variable</li>
+<li>计算节点：无状态的计算或控制操作，负责算法逻辑表达或流程控制  tf.assign_add()</li>
+<li>数据节点：数据的占位符操作，用于描述图外输入数据的属性 tf.placeholder</li>
+</ul>
+<h3 id="tensorflow会话"><a href="#tensorflow会话" class="headerlink" title="tensorflow会话"></a>tensorflow会话</h3><p>提供了估算张量和执行操作的运行环境<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sess = tf.Session(target=..., graph=..., config=...)</span><br><span class="line">sess.run()</span><br><span class="line">sess.close()</span><br></pre></td></tr></table></figure></p>
+<p>其中target是执行引擎，graph是加载的数据流图，config是启动的配置项<br>估算张量的另外两种方法:Tensor.eval()估算张量  Operation.run()执行操作,本质上其实都是Session.run()</p>
+<h3 id="tensorflow优化器"><a href="#tensorflow优化器" class="headerlink" title="tensorflow优化器"></a>tensorflow优化器</h3><p>迭代优化三个步骤：</p>
+<ul>
+<li>计算梯度:compute_gradients()</li>
+<li>处理梯度:按用户自己的需求处理梯度值，如梯度裁剪和梯度加权等</li>
+<li>应用梯度:调用apply_gradients() 把处理后的梯度值应用到模型参数</li>
+</ul>
+<h3 id="tensorflow张量代码实例"><a href="#tensorflow张量代码实例" class="headerlink" title="tensorflow张量代码实例"></a>tensorflow张量代码实例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">W = tf.Variable(&lt;initial-value&gt;, name=&lt;optional-value&gt;)</span><br><span class="line"></span><br><span class="line">y = tf.matmul(W, ...another variable <span class="keyword">or</span> tensor ...)</span><br><span class="line">z = tf.sigmoid(W + y)</span><br><span class="line">W.assign(W + <span class="number">1.0</span>)</span><br><span class="line">W.assign_add(<span class="number">1.0</span>)</span><br></pre></td></tr></table></figure>
 
           
         

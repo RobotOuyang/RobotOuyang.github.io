@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="C++智能指针auto_ptr：在指针离开作用域时，会自动的delete但是有如下问题：  当auto_ptr值传递给函数的时候，在这个函数结束的时候指针就释放掉了，导致在函数结束之后无法访问之前传递给该函数的指针了。 无法用于数组。因为默认析构函数调用的是delete，而数组需要用delete[]。 无法和容器共用。  shared_ptr 共享所有权(sharedownership)的概念。s">
+<meta name="description" content="C++ Primer阅读记录C++指向指针的指针123int i = 1;int *q = &amp;amp;i;int **p = &amp;amp;q; C++指向指针的引用12345int *p;int *&amp;amp;q = p;//q是指针p的引用int i = 1;q = &amp;amp;i;//q指向i*q = 0;//q指向0，不再指向i">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++智能指针">
-<meta property="og:url" content="http://RobotOuyang.github.io/2019/05/25/C-智能指针/index.html">
+<meta property="og:title" content="C++ Primer Notes 01">
+<meta property="og:url" content="http://RobotOuyang.github.io/2019/05/27/C-Primer-Notes-01/index.html">
 <meta property="og:site_name" content="Better Coder&#39;s Blog">
-<meta property="og:description" content="C++智能指针auto_ptr：在指针离开作用域时，会自动的delete但是有如下问题：  当auto_ptr值传递给函数的时候，在这个函数结束的时候指针就释放掉了，导致在函数结束之后无法访问之前传递给该函数的指针了。 无法用于数组。因为默认析构函数调用的是delete，而数组需要用delete[]。 无法和容器共用。  shared_ptr 共享所有权(sharedownership)的概念。s">
+<meta property="og:description" content="C++ Primer阅读记录C++指向指针的指针123int i = 1;int *q = &amp;amp;i;int **p = &amp;amp;q; C++指向指针的引用12345int *p;int *&amp;amp;q = p;//q是指针p的引用int i = 1;q = &amp;amp;i;//q指向i*q = 0;//q指向0，不再指向i">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-25T09:18:44.492Z">
+<meta property="og:updated_time" content="2019-05-26T16:22:52.506Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++智能指针">
-<meta name="twitter:description" content="C++智能指针auto_ptr：在指针离开作用域时，会自动的delete但是有如下问题：  当auto_ptr值传递给函数的时候，在这个函数结束的时候指针就释放掉了，导致在函数结束之后无法访问之前传递给该函数的指针了。 无法用于数组。因为默认析构函数调用的是delete，而数组需要用delete[]。 无法和容器共用。  shared_ptr 共享所有权(sharedownership)的概念。s">
+<meta name="twitter:title" content="C++ Primer Notes 01">
+<meta name="twitter:description" content="C++ Primer阅读记录C++指向指针的指针123int i = 1;int *q = &amp;amp;i;int **p = &amp;amp;q; C++指向指针的引用12345int *p;int *&amp;amp;q = p;//q是指针p的引用int i = 1;q = &amp;amp;i;//q指向i*q = 0;//q指向0，不再指向i">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://RobotOuyang.github.io/2019/05/25/C-智能指针/">
+  <link rel="canonical" href="http://RobotOuyang.github.io/2019/05/27/C-Primer-Notes-01/">
 
 
 
 
 
-  <title>C++智能指针 | Better Coder's Blog</title>
+  <title>C++ Primer Notes 01 | Better Coder's Blog</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://RobotOuyang.github.io/2019/05/25/C-智能指针/">
+    <link itemprop="mainEntityOfPage" href="http://RobotOuyang.github.io/2019/05/27/C-Primer-Notes-01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ouyang">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C++智能指针</h1>
+          <h1 class="post-title" itemprop="name headline">C++ Primer Notes 01</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-25T16:35:02+08:00">
-                2019-05-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-27T00:22:20+08:00">
+                2019-05-27
               </time>
             
 
@@ -299,31 +299,8 @@
       
 
       
-        <h2 id="C-智能指针"><a href="#C-智能指针" class="headerlink" title="C++智能指针"></a>C++智能指针</h2><h3 id="auto-ptr："><a href="#auto-ptr：" class="headerlink" title="auto_ptr："></a><b>auto_ptr：</b></h3><p>在指针离开作用域时，会自动的delete<br>但是有如下问题：<br><br></p>
-<ol>
-<li>当auto_ptr值传递给函数的时候，在这个函数结束的时候指针就释放掉了，导致在函数结束之后无法访问之前传递给该函数的指针了。</li>
-<li>无法用于数组。因为默认析构函数调用的是delete，而数组需要用delete[]。</li>
-<li>无法和容器共用。</li>
-</ol>
-<h3 id="shared-ptr"><a href="#shared-ptr" class="headerlink" title="shared_ptr"></a><b>shared_ptr</b></h3><ul>
-<li>共享所有权(sharedownership)的概念。shared_ptr的目标非常简单：多个指针可以同时指向一个对象，当最后一个shared_ptr离开作用域时，内存才会自动释放。解决了auto_ptr的问题1。</li>
-<li><p>同时在构造的时候可以传个lambda函数来解决auto_ptr的问题2，eg:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">shared_ptr</span>&lt;Test&gt; sptr(<span class="keyword">new</span> Test[<span class="number">5</span>], [](Test *p)&#123;<span class="keyword">delete</span>[] p;&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>但同时还存在如下问题：<br><br></p>
-<ol>
-<li><p>shared_ptr如果指向的内存块属于不同组，将产生错误。eg:</p>
- <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span>* p = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line"><span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; sptr1( p);</span><br><span class="line"><span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; sptr2( p );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>循环引用：如果共享智能指针卷入了循环引用，资源都不会正常释放。</p>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="weak-ptr"><a href="#weak-ptr" class="headerlink" title="weak_ptr"></a><b>weak_ptr</b></h3><p>解决shared_ptr无法循环引用的问题.机制是weak_reference.</p>
-<h3 id="unique-ptr"><a href="#unique-ptr" class="headerlink" title="unique_ptr"></a><b>unique_ptr</b></h3><p>unique_ptr遵循着独占语义,在任何时间点，资源只能唯一地被一个unique_ptr占有。当unique_ptr离开作用域，所包含的资源被释放。<br>可创建数组，eg:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>[ ]&gt; uptr( <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>] );</span><br></pre></td></tr></table></figure></p>
-<p>unique_ptr不提供复制语义（拷贝赋值和拷贝构造都不可以），只支持移动语义(move semantics)</p>
-<p><br><br>源阅读链接：<a href="https://www.jianshu.com/p/e4919f1c3a28" target="_blank" rel="noopener">https://www.jianshu.com/p/e4919f1c3a28</a></p>
+        <h2 id="C-Primer阅读记录"><a href="#C-Primer阅读记录" class="headerlink" title="C++ Primer阅读记录"></a>C++ Primer阅读记录</h2><h3 id="C-指向指针的指针"><a href="#C-指向指针的指针" class="headerlink" title="C++指向指针的指针"></a>C++指向指针的指针</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> *q = &amp;i;</span><br><span class="line"><span class="keyword">int</span> **p = &amp;q;</span><br></pre></td></tr></table></figure>
+<h3 id="C-指向指针的引用"><a href="#C-指向指针的引用" class="headerlink" title="C++指向指针的引用"></a>C++指向指针的引用</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line"><span class="keyword">int</span> *&amp;q = p;<span class="comment">//q是指针p的引用</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">q = &amp;i;<span class="comment">//q指向i</span></span><br><span class="line">*q = <span class="number">0</span>;<span class="comment">//q指向0，不再指向i</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -348,8 +325,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/25/tensorflow-basics/" rel="next" title="tensorflow basics">
-                <i class="fa fa-chevron-left"></i> tensorflow basics
+              <a href="/2019/05/25/C-智能指针/" rel="next" title="C++智能指针">
+                <i class="fa fa-chevron-left"></i> C++智能指针
               </a>
             
           </div>
@@ -357,10 +334,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/27/C-Primer-Notes-01/" rel="prev" title="C++ Primer Notes 01">
-                C++ Primer Notes 01 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -474,7 +447,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-智能指针"><span class="nav-number">1.</span> <span class="nav-text">C++智能指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#auto-ptr："><span class="nav-number">1.1.</span> <span class="nav-text">auto_ptr：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shared-ptr"><span class="nav-number">1.2.</span> <span class="nav-text">shared_ptr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak-ptr"><span class="nav-number">1.3.</span> <span class="nav-text">weak_ptr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unique-ptr"><span class="nav-number">1.4.</span> <span class="nav-text">unique_ptr</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-Primer阅读记录"><span class="nav-number">1.</span> <span class="nav-text">C++ Primer阅读记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C-指向指针的指针"><span class="nav-number">1.1.</span> <span class="nav-text">C++指向指针的指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-指向指针的引用"><span class="nav-number">1.2.</span> <span class="nav-text">C++指向指针的引用</span></a></li></ol></li></ol></div>
             
 
           </div>
